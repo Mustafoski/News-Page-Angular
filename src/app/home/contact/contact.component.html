@@ -1,0 +1,83 @@
+<div class="container">
+  <app-navigation></app-navigation>
+
+  <div class="row mt-5">
+    <div class="col-lg-6 col-md-12">
+      <div class="h5">Contact Form</div>
+      <hr />
+      <form [formGroup]="cardForm">
+        <div class="form-group">
+          <label for="Name">Name</label>
+          <input
+            formControlName="name"
+            class="form-control"
+            placeholder="Enter Name"
+          />
+          <ng-container
+            class="border border-danger"
+            *ngIf="
+              cardForm.controls.name.touched &&
+              cardForm.controls.name.errors &&
+              cardForm.controls.name.dirty
+            "
+          >
+            <div
+              *ngIf="cardForm.controls.name.errors.required"
+              class="border border-danger"
+            >
+              Value is Required
+            </div>
+            <div
+              *ngIf="cardForm.controls.name.errors.minlength"
+              class="border border-danger"
+            >
+              Value you entered is
+              {{ cardForm.controls.name.errors.minlength.actualLength }}
+              characters long, but must be at least
+              {{ cardForm.controls.name.errors.minlength.requiredLength }}
+              characters
+            </div>
+          </ng-container>
+        </div>
+
+        <!--Email-->
+        <div class="form-group">
+          <label for="Name">Email</label>
+          <input
+            class="border border-danger"
+            formControlName="email"
+            class="form-control"
+            placeholder="Enter Email"
+          />
+          <ng-container
+            class="border border-danger"
+            *ngIf="
+              cardForm.controls.email.touched &&
+              cardForm.controls.email.errors &&
+              cardForm.controls.email.dirty
+            "
+          >
+            <div
+              class="border border-danger"
+              *ngIf="cardForm.controls.email.errors.required"
+            >
+              Value is Required
+            </div>
+            <div
+              class="border border-danger"
+              *ngIf="cardForm.controls.email.errors.minlength"
+            >
+              Value you entered is
+              {{ cardForm.controls.email.errors.minlength.actualLength }}
+              characters long, but must be at least
+              {{ cardForm.controls.email.errors.minlength.requiredLength }}
+              characters
+            </div>
+          </ng-container>
+        </div>
+
+        <button type="submit" class="btn btn-danger mt-4">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
